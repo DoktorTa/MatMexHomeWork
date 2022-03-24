@@ -11,8 +11,9 @@ import com.example.a002.databinding.ItemHabitBinding
 
 
 class HabitAdapter(
-    val mainActivity: MainActivity
+    val habitsListFragment: HabitsListFragment
 ): RecyclerView.Adapter<HabitAdapter.HabitViewHolder>(), View.OnClickListener {
+
     private val habitService: HabitService = HabitService
 
     class HabitViewHolder(
@@ -70,7 +71,7 @@ class HabitAdapter(
                 }
                 ID_EDIT_HABIT -> {
                     habitService.deleteHabit(habit)
-                    mainActivity.translationToEditHabit(habit)
+                    habitsListFragment.translationToEditHabit(habit)
                 }
                 ID_DELETE_HABIT -> {
                     habitService.deleteHabit(habit)

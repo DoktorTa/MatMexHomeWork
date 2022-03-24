@@ -1,8 +1,6 @@
 package com.example.a002
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -72,7 +70,7 @@ class CreateNewHabitActivity : AppCompatActivity() {
     }
 
     private fun translationToHabitList(view: View){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, HabitsListActivity::class.java)
         startActivity(intent)
     }
 
