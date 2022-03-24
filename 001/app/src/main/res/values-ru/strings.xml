@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">001</string>
+    <string name="title_activity_quadre_score">QuadreScore</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+
+    <string name="square_score_info">Квадрат колличества изменений конфигурации, по модулю 32766</string>
+    <string name="counting_score_info">Колличество изменений конфигурации, по модулю 32766</string>
+</resources>

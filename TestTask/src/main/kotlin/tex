@@ -1,0 +1,25 @@
+time 10000
+gender m
+age 21
+os_version 15
+x_coord 45.1
+y_coord 45.5
+3
+6
+type LocationAgePush
+text Cheap_beer_in_your_area
+age 18
+x_coord 44.1
+y_coord 50.0
+radius 10
+3
+type TechPush
+text Update_is_available
+os_version 14
+6
+type LocationAgePush
+text Cheasp_beer_in_your_area
+age 18
+x_coord 44.1
+y_coord 50.0
+radius 10
