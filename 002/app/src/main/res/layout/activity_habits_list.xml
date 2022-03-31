@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".HabitsListActivity"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_grey">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutGroup"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"/>
 
-        <fragment
-            android:id="@+id/fragment_habits_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabLayoutGroup"
+        android:layout_marginTop="0dp" />
 
-    </LinearLayout>
+</RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<RelativeLayout
+    android:id="@+id/left_drawer"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:choiceMode="none"
+    android:clickable="true"
+    android:background="#FFFFFF"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a002.databinding.ItemHabitBinding
+import com.example.a002.databinding.NewItemHabitBinding
 
 
 class HabitAdapter(
@@ -15,13 +16,14 @@ class HabitAdapter(
 ): RecyclerView.Adapter<HabitAdapter.HabitViewHolder>(), View.OnClickListener {
 
     private val habitService: HabitService = HabitService
+    lateinit var filterByGroup: String
 
     class HabitViewHolder(
-        val binging: ItemHabitBinding): RecyclerView.ViewHolder(binging.root){}
+        val binging: NewItemHabitBinding): RecyclerView.ViewHolder(binging.root){}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemHabitBinding.inflate(inflater, parent, false)
+        val binding = NewItemHabitBinding.inflate(inflater, parent, false)
 
         binding.root.setOnClickListener(this)
 
@@ -29,7 +31,8 @@ class HabitAdapter(
     }
 
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
-        val habit = habitService.getHabit(holder.getAdapterPosition())
+        val habit = habitService.getHabit(holder.getAdapterPosition(), filterByGroup)
+
 
         with(holder.binging){
             holder.itemView.tag = habit
@@ -37,11 +40,11 @@ class HabitAdapter(
             this.nameHabit.text = habit.name
             this.colorLine.setBackgroundColor(Color.parseColor(habit.color))
             this.descriptionHabit.text = habit.description
+            this.countRepeat.text = habit.countRepeat.toString()
             this.paramsHabit.text = String.format("" +
-                    "[${habit.group.toString()}]-" +
-                    "[${habit.priority.toString()}]-" +
-                    "[${habit.countRepeat.toString()} repeat]-" +
-                    "[${habit.periodRepeat.toString()} day]")
+                    "${habit.group.toString()} " +
+                    "${habit.priority.toString()} " +
+                    "${habit.periodRepeat.toString()} day")
 
         }
     }
@@ -63,11 +66,11 @@ class HabitAdapter(
             when (it.itemId) {
                 ID_ADD_COUNT_REPEAT -> {
                     habitService.onHabitCountChange(habit, 1)
-                    this.notifyDataSetChanged()
+                    notifyDataSetChanged()
                 }
                 ID_SUB_COUNT_REPEAT -> {
                     habitService.onHabitCountChange(habit, -1)
-                    this.notifyDataSetChanged()
+                    notifyDataSetChanged()
                 }
                 ID_EDIT_HABIT -> {
                     habitService.deleteHabit(habit)
@@ -84,9 +87,8 @@ class HabitAdapter(
         popupMenu.show()
     }
 
-
     override fun getItemCount(): Int {
-        return habitService.getSize()
+        return habitService.getSizeWithFilterGroup(filterByGroup)
     }
 
     override fun onClick(p0: View?) {

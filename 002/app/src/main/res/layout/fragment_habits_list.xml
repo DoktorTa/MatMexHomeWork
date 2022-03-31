@@ -8,16 +8,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/habitsRecycle"
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
+        android:layout_width="387dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonNewHabit"
-
-        android:onClick="translationToCreateHabit"
 
         android:layout_width="56dp"
         android:layout_height="56dp"
@@ -29,6 +27,7 @@
         app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/white" />
+        app:rippleColor="@color/white"
+        android:contentDescription="TODO" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
