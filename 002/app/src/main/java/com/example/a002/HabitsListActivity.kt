@@ -3,8 +3,12 @@ package com.example.a002
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavHostController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -26,6 +30,15 @@ class HabitsListActivity : AppCompatActivity() {
 
                 tab.text = namesPage[position]
             }.attach()
+
+//        val navHost = supportFragmentManager
+//            .findFragmentById(R.id.left_drawer) as NavHostFragment? ?: return
+//        val navController = navHost.navController
+//
+//        val sideBar = findViewById<NavigationView>(R.id.left_drawer)
+//        sideBar?.inflateHeaderView(R.layout.info_header_app)
+//        sideBar?.setupWithNavController(navController)
+
 
 //        if (savedInstanceState == null) {
 //            supportFragmentManager
