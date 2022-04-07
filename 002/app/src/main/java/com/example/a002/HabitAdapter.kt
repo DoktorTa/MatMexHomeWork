@@ -72,8 +72,8 @@ class HabitAdapter(
                     notifyDataSetChanged()
                 }
                 ID_EDIT_HABIT -> {
-                    habitService.deleteHabit(habit)
                     habitsListFragment.translationToEditHabit(habit)
+                    habitService.deleteHabit(habit)
                 }
                 ID_DELETE_HABIT -> {
                     habitService.deleteHabit(habit)

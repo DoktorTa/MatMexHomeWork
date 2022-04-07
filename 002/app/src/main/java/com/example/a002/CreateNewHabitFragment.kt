@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.a002.databinding.FragmentCreateNewHabitBinding
 
@@ -59,9 +60,9 @@ class CreateNewHabitFragment(val intentBundle: Bundle? ): Fragment() {
         binding.countHabit.setText(bundle.get("countRepeatHabit").toString())
         binding.periodHabit.setText(bundle.get("periodRepeatHabit").toString())
 
+        Log.d("Radio", "${bundle.get("groupHabit")}")
         val radioId: Int = groupHabitList.indexOf(bundle.get("groupHabit").toString())
-        val radioButton: RadioButton = binding.groupHabit.findViewById(radioId)
-
+        val radioButton: RadioButton = binding.groupHabit[radioId] as RadioButton
         radioButton.setChecked(true)
 
         val idSelector: Int = priorityList.indexOf(bundle.get("priorityHabit").toString())

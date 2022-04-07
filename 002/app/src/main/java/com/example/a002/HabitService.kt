@@ -6,8 +6,8 @@ object HabitService {
     private val habitsGood: MutableList<Habit> = mutableListOf()
     private val habitsBad: MutableList<Habit> = mutableListOf()
 
-    fun getListPriorityName(): List<String> = Priority.values().contentToString().replace("[", "").replace("]", "").split(", ")
-    fun getListGroupsName(): List<String> = Groups.values().contentDeepToString().replace("[", "").replace("]", "").split(", ")
+    fun getListPriorityName(): List<String> = Priority.values().map{it.name}
+    fun getListGroupsName(): List<String> = Groups.values().map{it.name}
 
     enum class Priority{
         HARD,
@@ -18,8 +18,7 @@ object HabitService {
     enum class Groups(name: String){
         Bad("Sport"),
         Good("Smoked"),
-
-    }
+    } // ["Bad" , "Good"]
 
 
     init{
