@@ -1,6 +1,6 @@
-package com.example.a002
+package com.example.a002.viewModel
 
-import android.util.Log
+import com.example.a002.db.Habit
 
 
 object HabitService {
@@ -69,7 +69,7 @@ object HabitService {
         )
     }
 
-    fun getHabit(position: Int, filterByGroup: String): Habit{
+    fun getHabit(position: Int, filterByGroup: String): Habit {
         if (filterByGroup == Groups.Good.name){
             return habitsGood[position]
         } else {

@@ -1,4 +1,4 @@
-package com.example.a002
+package com.example.a002.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,15 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.a002.HabitsApp
 import com.example.a002.databinding.FragmentHabitsListBinding
+import com.example.a002.db.Habit
+import com.example.a002.viewModel.HabitViewModel
+import com.example.a002.viewModel.HabitViewModelFactory
 
 class HabitsListFragment: Fragment() {
 
-    private var adapter: HabitAdapter = HabitAdapter(this)
+    private var adapter: HabitAdapter = HabitAdapter()
     private lateinit var binding: FragmentHabitsListBinding
     lateinit var name: String
     lateinit var filter_group_name: String
+
+    private val wordViewModel: HabitViewModel by viewModels {
+        HabitViewModelFactory((application as HabitsApp).repository)
+    }
 
     companion object{
         private const val NAME_ARGS: String = "args_name"
@@ -66,11 +75,11 @@ class HabitsListFragment: Fragment() {
         startActivity(intent)
     }
 
-    fun translationToEditHabit(habit: Habit){
-        val intent = Intent(context, CreateNewHabitActivity::class.java)
-        intent.putExtra("habit", habit)
-        startActivity(intent)
-    }
+//    fun translationToEditHabit(habit: Habit){
+//        val intent = Intent(context, CreateNewHabitActivity::class.java)
+//        intent.putExtra("habit", habit)
+//        startActivity(intent)
+//    }
 
 
 }

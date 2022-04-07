@@ -1,4 +1,4 @@
-package com.example.a002
+package com.example.a002.ui
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.example.a002.R
 
 class ColorPickerDialog : DialogFragment() {
 

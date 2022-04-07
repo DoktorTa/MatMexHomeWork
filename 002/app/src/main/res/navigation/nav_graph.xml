@@ -7,6 +7,6 @@
 
     <activity
         android:id="@+id/habitsListActivity"
-        android:name="com.example.a002.HabitsListActivity"
+        android:name="com.example.a002.ui.HabitsListActivity"
         android:label="HabitsListActivity" />
 </navigation>

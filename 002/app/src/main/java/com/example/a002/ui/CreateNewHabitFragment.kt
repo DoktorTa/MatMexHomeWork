@@ -1,4 +1,4 @@
-package com.example.a002
+package com.example.a002.ui
 
 import android.content.Context
 import android.content.Intent
@@ -9,13 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.a002.viewModel.HabitService
 import com.example.a002.databinding.FragmentCreateNewHabitBinding
 
 class CreateNewHabitFragment(val intentBundle: Bundle? ): Fragment() {
     private val habitService: HabitService = HabitService
-    private val priorityList: List<String> = habitService.getListPriorityName()
-    private val groupHabitList: List<String> = habitService.getListGroupsName()
+    private val priorityList: List<String> = HabitService.getListPriorityName()
+    private val groupHabitList: List<String> = HabitService.getListGroupsName()
     private lateinit var binding: FragmentCreateNewHabitBinding
 
     override fun onCreateView(
@@ -97,14 +97,15 @@ class CreateNewHabitFragment(val intentBundle: Bundle? ): Fragment() {
         val radioId: Int = binding.groupHabit.getCheckedRadioButtonId()
         val radioButton: RadioButton = binding.groupHabit.findViewById(radioId)
 
-        habitService.createHabit(
+        HabitService.createHabit(
             name = binding.nameHabit.text.toString(),
             description = binding.descriptionHabit.text.toString(),
             color = "#00FF00",
             priority = binding.spinnerPriority.selectedItem.toString(),
-            group =  radioButton.text.toString(),
+            group = radioButton.text.toString(),
             periodRepeat = binding.periodHabit.text.toString().toInt(),
-            countRepeat = binding.countHabit.text.toString().toInt())
+            countRepeat = binding.countHabit.text.toString().toInt()
+        )
 
         translationToHabitList(view)
     }

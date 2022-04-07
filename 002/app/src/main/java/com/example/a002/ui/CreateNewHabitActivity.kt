@@ -1,13 +1,9 @@
-package com.example.a002
+package com.example.a002.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.a002.databinding.ActivityCreateNewHabitBinding
-import androidx.core.view.get
+import com.example.a002.R
 
 class CreateNewHabitActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateNewHabitBinding
