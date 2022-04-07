@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a002.databinding.FragmentCreateNewHabitBinding
 
 class CreateNewHabitFragment(val intentBundle: Bundle? ): Fragment() {
@@ -49,8 +48,6 @@ class CreateNewHabitFragment(val intentBundle: Bundle? ): Fragment() {
         val buttonCansel: Button = binding.canselHabit
         buttonCansel.setOnClickListener {view -> translationToHabitList(view)}
 
-//        val buttonColorPicker: Button = binding.colorPiker
-//        buttonColorPicker.setOnClickListener {view -> createColorPickerDialog(view)}
     }
 
     private fun getDataHabitEdit(bundle: Bundle){

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
-import com.example.a002.databinding.ItemHabitBinding
 import com.example.a002.databinding.NewItemHabitBinding
 
 
@@ -42,9 +41,9 @@ class HabitAdapter(
             this.descriptionHabit.text = habit.description
             this.countRepeat.text = habit.countRepeat.toString()
             this.paramsHabit.text = String.format("" +
-                    "${habit.group.toString()} " +
-                    "${habit.priority.toString()} " +
-                    "${habit.periodRepeat.toString()} day")
+                    "${habit.group} " +
+                    "${habit.priority} " +
+                    "${habit.periodRepeat} day")
 
         }
     }

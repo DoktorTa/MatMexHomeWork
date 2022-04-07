@@ -1,11 +1,7 @@
 package com.example.a002
 
-import android.util.Log
-
 
 object HabitService {
-    private val habits: MutableList<Habit> = mutableListOf()
-
 
     private val habitsGood: MutableList<Habit> = mutableListOf()
     private val habitsBad: MutableList<Habit> = mutableListOf()
@@ -60,13 +56,6 @@ object HabitService {
             habitsBad.add(Habit(name, description, color, priority, group, periodRepeat, countRepeat))
         }
 
-//        sortHabitsByPriority()
-    }
-
-    private fun sortHabitsByPriority(){
-        habits.sortWith(
-            compareBy{it.group}
-        )
     }
 
     fun getHabit(position: Int, filterByGroup: String): Habit{

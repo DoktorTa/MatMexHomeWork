@@ -1,7 +1,6 @@
 package com.example.a002
 
 import android.os.Parcelable
-import  kotlinx.serialization.Serializable
 import kotlinx.parcelize.Parcelize
 
 

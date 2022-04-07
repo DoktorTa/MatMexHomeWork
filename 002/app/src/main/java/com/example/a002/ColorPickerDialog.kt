@@ -18,18 +18,9 @@ class ColorPickerDialog : DialogFragment() {
         val view: View = inflater.inflate(R.layout.dialog_color_picker, null)
         val v: View = view.findViewById(R.id.gradient)
         v.setBackground(generateGradient())
-//        generateRectangle(view)
         return view
     }
-//
-//    private fun generateRectangle(view: View){
-//        val v: LinearLayout = view.findViewById(R.id.linerLayoutGradient)
-//        for (i in 0..countElement){
-//            val but: Button = Button(context)
-//            but.layoutParams = ViewGroup.LayoutParams(50, 50)
-//            v.addView(but)
-//        }
-//    }
+
 
     fun generateGradient(): GradientDrawable {
         val colors = (0..360 step 60)
