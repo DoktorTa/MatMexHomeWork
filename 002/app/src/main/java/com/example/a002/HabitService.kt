@@ -15,11 +15,10 @@ object HabitService {
     }
 
 
-    enum class Groups(name: String){
-        Bad("Sport"),
-        Good("Smoked"),
-    } // ["Bad" , "Good"]
-
+    enum class Groups(){
+        Bad,
+        Good,
+    }
 
     init{
         createHabit("1", "kernel", "#FF0000", Priority.HARD.name, Groups.Bad.name, 14, 0)

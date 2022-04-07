@@ -12,6 +12,7 @@ import com.example.a002.databinding.FragmentHabitsListBinding
 class HabitsListFragment: Fragment() {
 
     private var adapter: HabitAdapter = HabitAdapter(this)
+
     private lateinit var binding: FragmentHabitsListBinding
     lateinit var name: String
     lateinit var filter_group_name: String
