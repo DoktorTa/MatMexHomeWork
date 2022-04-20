@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey">
+
+    <Button
+        android:id="@+id/toListHabit"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="30dp"
+        android:textSize="14sp"
+
+        android:text="Create"
+
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/canselHabit"
+
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="30dp"
+        android:textSize="14sp"
+        android:text="Cansel"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/nameHabitFieldName"
+        android:layout_width="90dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Name Habits"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descriptionHabitFieldName"
+        android:layout_width="90dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="14dp"
+        android:text="Description"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameHabit" />
+
+    <TextView
+        android:id="@+id/countHabitFieldName"
+        android:layout_width="90dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="14dp"
+        android:text="Count"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionHabit" />
+
+    <TextView
+        android:id="@+id/periodHabitFieldName"
+        android:layout_width="90dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="14dp"
+        android:text="Period"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionHabit"/>
+
+    <TextView
+        android:id="@+id/priorityHabitFieldName"
+        android:layout_width="90dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="14dp"
+        android:text="Priority"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countHabit" />
+
+
+    <TextView
+        android:id="@+id/colorHabitFieldName"
+        android:layout_width="90dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="14dp"
+        android:text="Color"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countHabit" />
+
+    <Button
+        android:id="@+id/colorPiker"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="3dp"
+        android:background="#222222"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colorHabitFieldName" />
+
+    <TextView
+        android:id="@+id/groupHabitFieldName"
+        android:layout_width="90dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="14dp"
+        android:text="Group"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPriority" />
+
+    <Spinner
+        android:id="@+id/spinnerPriority"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/spinner_castom"
+        android:paddingBottom="13dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priorityHabitFieldName" />
+
+    <RadioGroup
+        android:id="@+id/groupHabit"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_marginTop="3dp"
+        android:background="#222222"
+
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupHabitFieldName">
+
+    </RadioGroup>
+
+
+    <EditText
+        android:id="@+id/periodHabit"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:background="#222222"
+        android:layout_marginTop="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/periodHabitFieldName" />
+
+    <EditText
+        android:id="@+id/countHabit"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="3dp"
+        android:background="#222222"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countHabitFieldName" />
+
+    <EditText
+        android:id="@+id/nameHabit"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="3dp"
+        android:background="#222222"
+        app:layout_constraintTop_toBottomOf="@+id/nameHabitFieldName"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/descriptionHabit"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="3dp"
+        android:background="#222222"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionHabitFieldName"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

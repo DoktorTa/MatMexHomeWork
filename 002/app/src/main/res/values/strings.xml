@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">002</string>
-    <string name="nameApp">Habon</string>
-    <string name="description">Приложение позволяет вам следить за своими привычками\n\n Вы можете задать привычке любой цвет\n Так же вы можете задать тему привычки\n Её переодичность, но только в днях.</string>
-    <string name="telegram_creator">Telegram: @SysteamName</string>
-</resources>
