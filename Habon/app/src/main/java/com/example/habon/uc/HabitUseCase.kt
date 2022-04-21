@@ -9,9 +9,8 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
-class HabitUseCase(
-    private val repository: HabitRepository
-) {
+class HabitUseCase(private val repository: HabitRepository) {
+
     private val dataFormat: SimpleDateFormat = SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH)
     private val nowData = dataFormat.parse(LocalDate.now().toString())
 
@@ -32,13 +31,26 @@ class HabitUseCase(
         return allHabit
     }
 
+    suspend fun searchHabitFromNameByEntry(name: String, nameGroup: String): Flow<List<Habit>>{
+        return repository.searchHabitFromNameByEntry(name, nameGroup)
+    }
+
     private fun getDiffDataInDay(dataCreate: String): Int{
         return (dataFormat.parse(dataCreate)!!.time - nowData!!.time / 24 * 60 * 60 * 1000).toInt()
     }
 
-
     suspend fun deleteHabit(habit: Habit) {
         repository.deleteHabit(habit)
+    }
+
+    suspend fun insertHabit(name: String,
+                            description: String,
+                            color: String,
+                            priority: String,
+                            group: String,
+                            periodRepeat: Int,
+                            countRepeat: Int){
+        repository.insertHabit(name, description, color, priority, group, periodRepeat, countRepeat, countRepeat, nowData!!.toString())
     }
 
     suspend fun changeHabitCountRepeat(habit: Habit, count: Int): String{
@@ -47,6 +59,7 @@ class HabitUseCase(
         return getControlText(habit)
     }
 
+    //TODO: Как получить здесь R.string
     private fun getControlText(habit: Habit): String{
         if (habit.group == Group.Bad.name){
             if (habit.countRepeatLeft!! <= 0){

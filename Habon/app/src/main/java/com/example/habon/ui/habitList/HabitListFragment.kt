@@ -3,6 +3,7 @@ package com.example.habon.ui.habitList
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,15 +14,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.habon.HabonApplication
+import com.example.habon.R
 import com.example.habon.databinding.FragmentHabitListBinding
+import com.example.habon.db.Habit
 import com.example.habon.uc.HabitUseCase
 import com.example.habon.ui.createHabit.CreateHabitActivity
 import com.example.habon.ui.createHabit.CreateHabitFragment
 import com.example.habon.vm.HabitCreateViewModel
 import com.example.habon.vm.HabitListViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class HabitsListFragment(): Fragment() {
+class HabitsListFragment(): Fragment(), EditCallBack {
 
     private lateinit var binding: FragmentHabitListBinding
     lateinit var name: String
@@ -54,7 +59,7 @@ class HabitsListFragment(): Fragment() {
         if (isAdded){
             generateViewModel()
         }
-        adapter = HabitRecyclerAdapter(habitViewModel)
+        adapter = HabitRecyclerAdapter(habitViewModel, this)
 
         val linerLayout = LinearLayoutManager(context)
         binding.habitsRecycle.adapter = adapter
@@ -72,13 +77,16 @@ class HabitsListFragment(): Fragment() {
         return binding.root
     }
 
-    fun createOnClickListener(){
-        binding.buttonNewHabit.setOnClickListener {view -> translationToHabitCreate(view)}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        childFragmentManager
+            .beginTransaction()
+            .add(R.id.containerBottomSheet, SearchFragment(habitViewModel))
+            .commit()
     }
 
-    private fun translationToHabitCreate(view: View){
-        val intent = Intent(context, CreateHabitActivity::class.java)
-        startActivity(intent)
+    fun createOnClickListener(){
+        binding.buttonNewHabit.setOnClickListener {view -> translationToHabitCreate(view)}
     }
 
     private fun generateViewModel(){
@@ -91,5 +99,17 @@ class HabitsListFragment(): Fragment() {
         val duration = Toast.LENGTH_LONG
         val toast = Toast.makeText(context, text, duration)
         toast.show()
+    }
+
+    private fun translationToHabitCreate(view: View){
+        val intent = Intent(context, CreateHabitActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun translationOnCreateHabitWithHabit(habit: Habit) {
+        val intent = Intent(context, CreateHabitActivity::class.java)
+        Log.d("HabitListFragment", habit.name)
+        intent.putExtra("habit", habit)
+        startActivity(intent)
     }
 }

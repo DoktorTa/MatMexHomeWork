@@ -1,18 +1,11 @@
 package com.example.habon.db
 
 import androidx.annotation.WorkerThread
-import com.example.habon.db.Habit
-import com.example.habon.db.HabitDAO
-import com.example.habon.util.Group
-import com.example.habon.util.Priority
 import kotlinx.coroutines.flow.Flow
-import java.time.LocalDate
 
 class HabitRepository (
     private val habitDAO: HabitDAO
 ) {
-
-    val allHabits: Flow<List<Habit>> = habitDAO.getAll()
 
     fun getHabitsByGroup(nameGroup: String): Flow<List<Habit>> {
         return habitDAO.getHabitsByFilterGroup(nameGroup)
@@ -27,8 +20,9 @@ class HabitRepository (
                             group: String,
                             periodRepeat: Int,
                             countRepeat: Int,
+                            countRepeatLeft: Int,
                             data: String) {
-        val habit = Habit(name, description, color, priority, group, periodRepeat, countRepeat, countRepeat, data)
+        val habit = Habit(name, description, color, priority, group, periodRepeat, countRepeat, countRepeatLeft, data)
         habitDAO.insertHabit(habit)
     }
 
@@ -44,4 +38,9 @@ class HabitRepository (
         habitDAO.changeCountRepeatHabit(habit)
     }
 
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun searchHabitFromNameByEntry(name: String, nameGroup: String): Flow<List<Habit>> {
+        return habitDAO.searchHabitFromNameByEntry(name, nameGroup)
+    }
 }

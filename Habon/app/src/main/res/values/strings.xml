@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Habon</string>
     <string name="description">Приложение позволяет вам следить за своими привычками\n\n Вы можете задать привычке любой цвет\n Так же вы можете задать тему привычки\n Её переодичность, но только в днях.</string>
-    <string name="telegram_creator">Telegram: @SysteamName</string>
+    <string name="telegram_creator">Telegram: @SysteamName\nLogo design: @Fia_Peri</string>
+    
+    <string name="good_habit_bust"></string>
+    <string name="bad_habit_bust">"Ты хватит это делать, помрешь не дай бог"</string>
+    <string name="good_habit_bust_not_enough"></string>
+    <string name="bad_habit_bust_not_enough"></string>
 </resources>

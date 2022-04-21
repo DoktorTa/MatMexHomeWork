@@ -2,28 +2,34 @@ package com.example.habon.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.habon.db.Habit
 import com.example.habon.db.HabitRepository
+import com.example.habon.uc.HabitUseCase
 import kotlinx.coroutines.launch
 
 class HabitCreateViewModel(
-    private val repository: HabitRepository
+    private val useCase: HabitUseCase
 ): ViewModel() {
 
-//    val habit: Habit
+    lateinit var habit: Habit
 
     companion object{
-        fun newHabitCreateViewModel(repository: HabitRepository): HabitCreateViewModel{
-            return HabitCreateViewModel(repository)
+        fun newHabitCreateViewModel(useCase: HabitUseCase): HabitCreateViewModel{
+            return HabitCreateViewModel(useCase)
         }
     }
-//
-//    fun insertHabit(name: String,
-//                    description: String,
-//                    color: String,
-//                    priority: String,
-//                    group: String,
-//                    periodRepeat: Int,
-//                    countRepeat: Int) = let { viewModelScope.launch {
-//        repository.insertHabit(name, description, color, priority, group, periodRepeat, countRepeat, )
-//    } }
+
+    fun loadDataHabit(habitNew: Habit){
+        habit = habitNew
+    }
+
+    fun insertHabit(name: String,
+                    description: String,
+                    color: String,
+                    priority: String,
+                    group: String,
+                    periodRepeat: Int,
+                    countRepeat: Int) = let { viewModelScope.launch {
+        useCase.insertHabit(name, description, color, priority, group, periodRepeat, countRepeat)
+    } }
 }

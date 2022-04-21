@@ -42,13 +42,9 @@ abstract class DataBaseHabits: RoomDatabase() {
         private class WordDatabaseCallback(
             private val scope: CoroutineScope
         ) : RoomDatabase.Callback() {
-            /**
-             * Override the onCreate method to populate the database.
-             */
+
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
-                // If you want to keep the data through app restarts,
-                // comment out the following line.
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
                         populateDatabase(database.habitDAO())
@@ -57,7 +53,7 @@ abstract class DataBaseHabits: RoomDatabase() {
             }
         }
 
-        suspend fun populateDatabase(habitDAO: HabitDAO) {
+        fun populateDatabase(habitDAO: HabitDAO) {
             habitDAO.insertHabit(Habit("1", "kernel", "#FF0000", Priority.Medium.name, Group.Good.name, 14, 2, 2,"2018-12-06"))
             habitDAO.insertHabit(Habit("2", "Herna", "#00FF00", Priority.Hard.name, Group.Bad.name, 7, 1, 1,"2018-12-06"))
             habitDAO.insertHabit(Habit("3", "Verna", "#0000FF", Priority.Easy.name, Group.Good.name, 1, 20, 20,"2018-12-06"))

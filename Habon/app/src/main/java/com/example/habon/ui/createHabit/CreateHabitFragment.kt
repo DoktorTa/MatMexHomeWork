@@ -9,17 +9,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.habon.HabonApplication
 import com.example.habon.databinding.FragmentCreateHabitBinding
+import com.example.habon.db.Habit
+import com.example.habon.uc.HabitUseCase
 import com.example.habon.ui.habitList.HabitListActivity
 import com.example.habon.util.getListGroupName
 import com.example.habon.util.getListPriorityName
 import com.example.habon.vm.HabitCreateViewModel
 import com.example.habon.vm.HabitListViewModel
 
-class CreateHabitFragment: Fragment() {
+class CreateHabitFragment(private val intentBundle: Bundle?): Fragment() {
     private val priorityList: List<String> = getListPriorityName()
     private val groupHabitList: List<String> = getListGroupName()
     private lateinit var habitCreateViewModel: HabitCreateViewModel
@@ -40,8 +43,9 @@ class CreateHabitFragment: Fragment() {
     }
 
     fun generateViewModel(){
-        habitCreateViewModel = HabitCreateViewModel
-            .newHabitCreateViewModel((requireActivity().application as HabonApplication).repository)
+        val habitUseCase = HabitUseCase(
+            (requireActivity().application as HabonApplication).repository)
+        habitCreateViewModel = HabitCreateViewModel.newHabitCreateViewModel(habitUseCase)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,9 +55,9 @@ class CreateHabitFragment: Fragment() {
         context?.let { loadPriorityData(it) }
         loadGroupData()
 
-//        if(intentBundle != null){
-//            getDataHabitEdit(intentBundle)
-//        }
+        if(intentBundle != null){
+            getDataHabitEdit(intentBundle)
+        }
     }
 
     private fun createOnClickListener(){
@@ -67,24 +71,24 @@ class CreateHabitFragment: Fragment() {
 //        buttonColorPicker.setOnClickListener {view -> createColorPickerDialog(view)}
     }
 
-//    private fun getDataHabitEdit(bundle: Bundle){
-//        val habit = bundle.get("habit")
-//        Log.d("", "${habit}")
-//
-//        binding.nameHabit.setText(bundle.get("nameHabit").toString())
-//        binding.descriptionHabit.setText(bundle.get("descriptionHabit").toString())
-//        binding.countHabit.setText(bundle.get("countRepeatHabit").toString())
-//        binding.periodHabit.setText(bundle.get("periodRepeatHabit").toString())
-//
-//        val radioId: Int = groupHabitList.indexOf(bundle.get("groupHabit").toString())
-//        val radioButton: RadioButton = binding.groupHabit.findViewById(radioId)
-//
-//        radioButton.setChecked(true)
-//
-//        val idSelector: Int = priorityList.indexOf(bundle.get("priorityHabit").toString())
-//        binding.spinnerPriority.setSelection(idSelector)
-//
-//    }
+    private fun getDataHabitEdit(bundle: Bundle){
+        val habit: Habit = bundle.get("habit") as Habit
+
+        binding.nameHabit.setText(habit.name)
+        binding.descriptionHabit.setText(habit.description)
+        binding.countHabit.setText(habit.countRepeat!!.toString())
+        binding.periodHabit.setText(habit.periodRepeat!!.toString())
+
+        val radioId: Int = groupHabitList.indexOf(habit.group)
+        Log.d("CreateHabitFragment", "${radioId}")
+        val radioButton: RadioButton = binding.groupHabit.get(radioId) as RadioButton
+
+        radioButton.setChecked(true)
+
+        val idSelector: Int = priorityList.indexOf(habit.priority)
+        binding.spinnerPriority.setSelection(idSelector)
+
+    }
 
     private fun loadPriorityData(context: Context){
         val priorityHabit: Spinner = binding.spinnerPriority
@@ -111,15 +115,15 @@ class CreateHabitFragment: Fragment() {
         val radioId: Int = binding.groupHabit.getCheckedRadioButtonId()
         val radioButton: RadioButton = binding.groupHabit.findViewById(radioId)
 
-//        habitCreateViewModel.insertHabit(
-//            name = binding.nameHabit.text.toString(),
-//            description = binding.descriptionHabit.text.toString(),
-//            color = "#00FF00",
-//            priority = binding.spinnerPriority.selectedItem.toString(),
-//            group = radioButton.text.toString(),
-//            periodRepeat = binding.periodHabit.text.toString().toInt(),
-//            countRepeat = binding.countHabit.text.toString().toInt()
-//        )
+        habitCreateViewModel.insertHabit(
+            name = binding.nameHabit.text.toString(),
+            description = binding.descriptionHabit.text.toString(),
+            color = "#00FF00",
+            priority = binding.spinnerPriority.selectedItem.toString(),
+            group = radioButton.text.toString(),
+            periodRepeat = binding.periodHabit.text.toString().toInt(),
+            countRepeat = binding.countHabit.text.toString().toInt()
+        )
 
         translationToHabitList(view)
     }

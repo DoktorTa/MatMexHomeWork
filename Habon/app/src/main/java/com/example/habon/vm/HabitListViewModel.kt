@@ -1,5 +1,6 @@
 package com.example.habon.vm
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.habon.db.Habit
 import com.example.habon.db.HabitRepository
@@ -23,9 +24,27 @@ class HabitListViewModel (
 
     var textToast: MutableLiveData<String> = MutableLiveData("Hello")
 
-    val allHabitOnThePage: LiveData<List<Habit>> = habitUseCase
+    private fun getHabitsFromUseCaseByGroup() = habitUseCase
         .getAllHabitOnPage(nameGroupOnThePage)
         .asLiveData()
+
+    var allHabitOnThePage: LiveData<List<Habit>> = getHabitsFromUseCaseByGroup()
+
+    fun searchHabitForNameAndDescription(searchString: String) = let { viewModelScope.launch {
+        Log.d("HabitListViewModel", "$searchString, $nameGroupOnThePage")
+        allHabitOnThePage = habitUseCase
+            .searchHabitFromNameByEntry(searchString, nameGroupOnThePage)
+            .asLiveData()
+
+        allHabitOnThePage.map{habits ->
+            habits.map{
+                Log.d("HabitListViewModel", it.name)
+            }
+        }
+        Log.d("HabitListViewModel", "Готово")
+        }
+    }
+
 
     fun deleteHabit(habit: Habit) = let { viewModelScope.launch {
         habitUseCase.deleteHabit(habit)

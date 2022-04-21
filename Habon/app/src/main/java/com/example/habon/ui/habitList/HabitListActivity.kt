@@ -25,5 +25,7 @@ class HabitListActivity : AppCompatActivity() {
 
             tab.text = namesPage[position]
         }.attach()
+
+
     }
 }

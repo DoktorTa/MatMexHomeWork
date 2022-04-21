@@ -16,10 +16,14 @@ import com.example.habon.db.Habit
 import com.example.habon.vm.HabitListViewModel
 
 class HabitRecyclerAdapter (
-    val habitListViewModel: HabitListViewModel
+    val habitListViewModel: HabitListViewModel,
+    private val editCallBack: EditCallBack
 ): ListAdapter<Habit, HabitRecyclerAdapter.HabitViewHolder>(HABITS_COMPARATOR), View.OnClickListener {
     private val habits: LiveData<List<Habit>> = habitListViewModel.allHabitOnThePage
-
+//
+//    fun HabitRecyclerAdapter(callBack: EditCallBack){
+//        editCallBack = callBack
+//    }
 
     class HabitViewHolder(
         val binging: HabitItemBinding): RecyclerView.ViewHolder(binging.root){}
@@ -91,6 +95,7 @@ class HabitRecyclerAdapter (
                     notifyDataSetChanged()
                 }
                 ID_EDIT_HABIT -> {
+                    editCallBack.translationOnCreateHabitWithHabit(habit)
 //                    HabitService.deleteHabit(habit)
 //                    habitsListFragment.translationToEditHabit(habit)
                 }
