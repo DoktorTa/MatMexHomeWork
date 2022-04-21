@@ -20,10 +20,7 @@ class HabitRecyclerAdapter (
     private val editCallBack: EditCallBack
 ): ListAdapter<Habit, HabitRecyclerAdapter.HabitViewHolder>(HABITS_COMPARATOR), View.OnClickListener {
     private val habits: LiveData<List<Habit>> = habitListViewModel.allHabitOnThePage
-//
-//    fun HabitRecyclerAdapter(callBack: EditCallBack){
-//        editCallBack = callBack
-//    }
+
 
     class HabitViewHolder(
         val binging: HabitItemBinding): RecyclerView.ViewHolder(binging.root){}

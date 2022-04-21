@@ -31,12 +31,12 @@ class HabitUseCase(private val repository: HabitRepository) {
         return allHabit
     }
 
-    suspend fun searchHabitFromNameByEntry(name: String, nameGroup: String): Flow<List<Habit>>{
-        return repository.searchHabitFromNameByEntry(name, nameGroup)
-    }
-
     private fun getDiffDataInDay(dataCreate: String): Int{
         return (dataFormat.parse(dataCreate)!!.time - nowData!!.time / 24 * 60 * 60 * 1000).toInt()
+    }
+
+    suspend fun searchHabitFromNameByEntry(name: String, nameGroup: String): Flow<List<Habit>>{
+        return repository.searchHabitFromNameByEntry(name, nameGroup)
     }
 
     suspend fun deleteHabit(habit: Habit) {
@@ -50,7 +50,16 @@ class HabitUseCase(private val repository: HabitRepository) {
                             group: String,
                             periodRepeat: Int,
                             countRepeat: Int){
-        repository.insertHabit(name, description, color, priority, group, periodRepeat, countRepeat, countRepeat, nowData!!.toString())
+        repository.insertHabit(
+            name,
+            description,
+            color,
+            priority,
+            group,
+            periodRepeat,
+            countRepeat,
+            countRepeat,
+            nowData!!.toString())
     }
 
     suspend fun changeHabitCountRepeat(habit: Habit, count: Int): String{

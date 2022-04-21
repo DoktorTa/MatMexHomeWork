@@ -23,12 +23,11 @@ class HabitListViewModel (
     }
 
     var textToast: MutableLiveData<String> = MutableLiveData("Hello")
+    var allHabitOnThePage: LiveData<List<Habit>> = getHabitsFromUseCaseByGroup()
 
     private fun getHabitsFromUseCaseByGroup() = habitUseCase
         .getAllHabitOnPage(nameGroupOnThePage)
         .asLiveData()
-
-    var allHabitOnThePage: LiveData<List<Habit>> = getHabitsFromUseCaseByGroup()
 
     fun searchHabitForNameAndDescription(searchString: String) = let { viewModelScope.launch {
         Log.d("HabitListViewModel", "$searchString, $nameGroupOnThePage")
